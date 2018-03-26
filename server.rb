@@ -1,13 +1,8 @@
 require 'webrick'
 require 'erb'
 
-require_relative 'main'
+require_relative 'model'
 
-
-
-
-
-#movies.each {|movie| puts movie.title}
 
 class Router < WEBrick::HTTPServlet::AbstractServlet
     def do_GET(request, response)
@@ -15,11 +10,30 @@ class Router < WEBrick::HTTPServlet::AbstractServlet
         when '/'
             response.status = 200
             response['Content-Type'] = 'text/html'
-            movies = Movie.order(:year).last(20)
-            renderer = ERB.new(html_file("index.html.erb"))
+            movies = Movie.order(:id).last(20)
+            renderer = ERB.new(html_file("index.html"))
             response.body = renderer.result(binding)
         end
     end
+
+    def do_POST(request, response)
+        case request.path
+        when '/add-movie'
+            response.status = 201
+            response['Content-Type'] = 'text/html'
+            new_movie = Movie.create(
+                title: request.query['title'],
+                year: request.query['year'],
+                director: request.query['director'],
+                cast: request.query['cast'],
+                genre: request.query['genre'],
+                notes: request.query['notes'],
+            )
+            renderer = ERB.new(html_file("added_movie.html"))
+            response.body = renderer.result(binding)
+        end
+    end
+
 
     private
     def html_file(file)

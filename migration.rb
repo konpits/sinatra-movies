@@ -4,8 +4,9 @@ require 'sequel'
 DB = Sequel.connect('sqlite://movies')
 
 DB.create_table :movies do
+    primary_key :id
     String :title
-    String :year
+    Integer :year
     String :director
     String :cast
     String :genre

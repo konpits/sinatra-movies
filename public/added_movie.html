@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>HELLO MOVIES</h1>
+
+    <p> You have added <%= new_movie.title %> to the database with the following details: </p>
+
+    <ul>
+        <li>Title: <%= new_movie.title %></li>
+        <li>Year: <%= new_movie.year %></li>
+        <li>Director: <%= new_movie.director %></li>
+        <li>Cast: <%= new_movie.cast %></li>
+        <li>Genre: <%= new_movie.genre %></li>
+        <li>Notes: <%= new_movie.notes %></li>
+    </ul>
+
+    <a href="/">Click here to return to your movies table</a>
+</body>
+</html>
