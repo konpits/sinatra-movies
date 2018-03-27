@@ -1,3 +1,10 @@
+### Sinatra extension
+
+Experimenting with Sinatra server app.
+This repo uses sequel and sqlite.
+
+---
+
 Challenge to use sequel / webrick
 
 1. Add sequel & sqlite gems
